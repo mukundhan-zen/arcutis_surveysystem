@@ -8,7 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
-import { createOnboarding } from "@/src/actions/onboardingActions";
+import { createOnboarding } from "@/actions/onboardingActions";
 
 export default function OnboardingForm() {
   const [name, setName] = useState("");

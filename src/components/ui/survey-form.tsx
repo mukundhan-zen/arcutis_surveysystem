@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { toast } from "sonner";
-import { submitSurvey } from "@/src/actions/surveyActions";
+import { submitSurvey } from "@/actions/surveyActions";
 import { useRouter } from "next/navigation";
 
 const defaultQuestions = [

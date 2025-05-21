@@ -1,7 +1,6 @@
-
 'use server';
 
-import { createServerClient } from "@/utils/supabase/server";
+import { createClient } from "@/utils/supabase/server";
 import { cookies } from "next/headers";
 
 type OnboardingInput = {
@@ -10,7 +9,7 @@ type OnboardingInput = {
 };
 
 export async function createOnboarding(values: OnboardingInput) {
-  const supabase = createServerClient(cookies());
+  const supabase = await createClient();
   const { data: user, error: userErr } = await supabase.auth.getUser();
   if (userErr || !user?.user) {
     return { error: "You must be signed in to complete onboarding." };
@@ -22,7 +21,7 @@ export async function createOnboarding(values: OnboardingInput) {
   }
   if (
     !values.email ||
-    !/^[^@]+@[^@]+\\.[^@]+$/.test(values.email) ||
+    !/^[^@]+@[^@]+\.[^@]+$/.test(values.email) ||
     values.email.length < 3
   ) {
     return { error: "A valid email address is required." };

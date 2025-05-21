@@ -1,7 +1,6 @@
-
 'use server';
 
-import { createServerClient } from "@/utils/supabase/server";
+import { createClient } from "@/utils/supabase/server";
 import { cookies } from "next/headers";
 
 type SurveyInput = {
@@ -10,7 +9,7 @@ type SurveyInput = {
 };
 
 export async function submitSurvey(values: SurveyInput) {
-  const supabase = createServerClient(cookies());
+  const supabase = await createClient();
   const { data: user, error: userErr } = await supabase.auth.getUser();
   if (userErr || !user?.user) {
     return { error: "You must be signed in to submit a survey." };
